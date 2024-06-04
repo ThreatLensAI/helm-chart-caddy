@@ -1,0 +1,12 @@
+apiVersion: v2
+name: helm-chart-caddy
+description: A Helm chart for Kubernetes
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+home: https://github.com/csye7125-su24-team06/helm-chart-caddy
+maintainers:
+  - name: Parichay Didwania
+    email: didwania.pa@northeastern.edu
+  - name: Venkata Naga Sai Teja Marlapati
+    email: marlapati.v@northeastern.edu
