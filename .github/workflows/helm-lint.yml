@@ -1,0 +1,26 @@
+name: Helm Lint
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  helm-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Helm Lint
+        id: lint-chart
+        uses: helm lint --set secrets.dockerfile="" . --strict
+
+      - name: Helm Template
+        id: lint-template
+        uses: helm template --set secrets.dockerfile="" .
+
+
+      

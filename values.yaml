@@ -1,0 +1,5 @@
+configmap:
+  port: 9090
+
+pod:
+  image: marlapativ/static-site:jenkins-static-site-1

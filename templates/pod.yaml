@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-site
+  namespace: csye7125
+spec:
+  containers:
+  - name: static-site
+    image: "{{ .Values.pod.image }}"
+    env:
+    - name: CADDY_ADDRESS
+      valueFrom:
+        configMapKeyRef:
+          name: cm
+          key: address
+    ports:
+    - containerPort: {{ .Values.configmap.port }}
+
+    readinessProbe:
+      httpGet:
+        path: /
+        port: {{ .Values.configmap.port }}
+      failureThreshold: 6
+      successThreshold: 2
+      periodSeconds: 10
+
+    livenessProbe:
+      httpGet:
+        path: /
+        port: {{ .Values.configmap.port }}
+      failureThreshold: 10
+      successThreshold: 1
+      periodSeconds: 10
+
+    startupProbe:
+      httpGet:
+        path: /
+        port: {{ .Values.configmap.port }}
+      failureThreshold: 30
+      periodSeconds: 10
+
+  imagePullSecrets:
+  - name: dockerhub
