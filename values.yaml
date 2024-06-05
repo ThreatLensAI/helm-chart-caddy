@@ -5,8 +5,5 @@ pod:
   imagePullPolicy: IfNotPresent
   port: 9090
 
-namespace:
-  name: csye7125
-
 secrets:
   dockerhub: ''
