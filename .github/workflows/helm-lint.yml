@@ -16,8 +16,8 @@ jobs:
 
       - name: Helm Lint
         id: lint-chart
-        run: helm lint --set secrets.dockerfile="" . --strict
+        run: helm lint . --strict
 
       - name: Helm Template
         id: lint-template
-        run: helm template --set secrets.dockerfile="" .
+        run: helm template .
