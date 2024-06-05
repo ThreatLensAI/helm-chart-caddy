@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cm
-  namespace: csye7125
-data:
-  port: "{{ .Values.configmap.port }}"

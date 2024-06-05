@@ -1,5 +1,12 @@
-configmap:
+pod:
+  image:
+    name: marlapativ/static-site
+    tag: jenkins-static-site-1
+  imagePullPolicy: IfNotPresent
   port: 9090
 
-pod:
-  image: marlapativ/static-site:jenkins-static-site-1
+namespace:
+  name: csye7125
+
+secrets:
+  dockerhub: ''

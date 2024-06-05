@@ -1,11 +1,12 @@
+# TODO: Update
+
 Thank you for installing {{ .Chart.Name }}.
 
 Your release is named {{ .Release.Name }}.
 
 To learn more about the release, try:
-
-  $ helm status {{ .Release.Name }}
-  $ helm get all {{ .Release.Name }}
+  $ helm status {{ .Release.Name }} --namespace {{ .Values.namespace.name }}
+  $ helm get all {{ .Release.Name }} --namespace {{ .Values.namespace.name }}
 
 To list all the releases in all the namespaces, use:
 
