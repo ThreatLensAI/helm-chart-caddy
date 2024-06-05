@@ -1,43 +1,42 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: static-site
-  namespace: csye7125
+  name: {{ .Release.Name }}-static-site-pod
+  namespace: {{ .Release.Namespace }}
 spec:
   containers:
-  - name: static-site
-    image: "{{ .Values.pod.image }}"
+  - name: {{ .Release.Name }}-static-site
+    image: "{{ .Values.pod.image.name }}:{{ .Values.pod.image.tag }}"
+    imagePullPolicy: {{ .Values.pod.imagePullPolicy | default "IfNotPresent" | quote }}
     env:
-    - name: CADDY_ADDRESS
+    - name: CADDY_PORT
       valueFrom:
         configMapKeyRef:
-          name: cm
-          key: address
+          name: {{ .Release.Name }}-config-map
+          key: port
     ports:
-    - containerPort: {{ .Values.configmap.port }}
+      - containerPort: {{ .Values.pod.port }}
 
     readinessProbe:
       httpGet:
-        path: /
-        port: {{ .Values.configmap.port }}
-      failureThreshold: 6
-      successThreshold: 2
-      periodSeconds: 10
-
+        port: {{ .Values.pod.port }}
+        path: {{ (.Values.pod.readinessProbe).path | default "/" | quote }}
+      failureThreshold: {{ (.Values.pod.readinessProbe).failureThreshold | default 6 }}
+      successThreshold: {{ (.Values.pod.readinessProbe).successThreshold | default 2 }}
+      periodSeconds: {{ (.Values.pod.readinessProbe).periodSeconds | default 10 }}
     livenessProbe:
       httpGet:
-        path: /
-        port: {{ .Values.configmap.port }}
-      failureThreshold: 10
-      successThreshold: 1
-      periodSeconds: 10
-
+        port: {{ .Values.pod.port }}
+        path: {{ (.Values.pod.livenessProbe).path | default "/" | quote }}
+      failureThreshold: {{ (.Values.pod.livenessProbe).failureThreshold | default 10 }}
+      successThreshold: {{ (.Values.pod.livenessProbe).successThreshold | default 1 }}
+      periodSeconds: {{ (.Values.pod.livenessProbe).periodSeconds | default 10 }}
     startupProbe:
       httpGet:
-        path: /
-        port: {{ .Values.configmap.port }}
-      failureThreshold: 30
-      periodSeconds: 10
+        port: {{ .Values.pod.port }}
+        path: {{ (.Values.pod.livenessProbe).path | default "/" | quote }}
+      failureThreshold: {{ (.Values.pod.startupProbe).failureThreshold | default 30 }}
+      periodSeconds: {{ (.Values.pod.startupProbe).periodSeconds | default 10 }}
 
   imagePullSecrets:
-  - name: dockerhub
+  - name: {{ .Release.Name }}-dockerhub
