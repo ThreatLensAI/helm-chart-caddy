@@ -25,7 +25,7 @@ This can be provided in following two ways:
 1. To install the chart with the release name `static-site` in custom namespace `csye7125` the following command can be used:
 
     ```bash
-    export DOCKERHUBCREDENTIALS=$(cat ~/.docker/config.json | base64)
+    export DOCKERHUBCREDENTIALS=$(cat ~/.docker/config.json | base64 -w 0)
     helm install static-site . --set secrets.dockerhub=${DOCKERHUBCREDENTIALS} --create-namespace --namespace csye7125
     ```
 
