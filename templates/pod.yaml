@@ -9,6 +9,7 @@ spec:
     image: "{{ .Values.pod.image.name }}:{{ .Values.pod.image.tag }}"
     imagePullPolicy: {{ .Values.pod.imagePullPolicy | default "IfNotPresent" | quote }}
     env:
+      a bv
     - name: CADDY_PORT
       valueFrom:
         configMapKeyRef:
