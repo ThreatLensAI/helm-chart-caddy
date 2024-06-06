@@ -26,6 +26,15 @@ Accessing the Application
 
 - Then open your browser and go to http://localhost:{{ .Values.pod.port }}.
 
+Uninstalling the Chart
+----------------------
+- To uninstall/delete the {{ .Release.Name }} deployment, use the following command:
+
+  helm uninstall {{ .Release.Name }} -n {{ .Release.Namespace }}
+
+- This will remove all the Kubernetes components associated with the chart and delete the release.
+
+
 Troubleshooting
 ---------------
 - If the pod is not in the Running state, check the pod events:
@@ -33,3 +42,4 @@ Troubleshooting
   kubectl describe pod -n {{ .Release.Namespace }} {{ .Release.Name }}-static-site-pod
 
 - Ensure that the DockerHub credentials are correctly set and that the image is available.
+
