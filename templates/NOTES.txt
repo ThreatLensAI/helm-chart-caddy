@@ -1,11 +1,45 @@
 Thank you for installing {{ .Chart.Name }}.
+The Helm chart for static-site has been successfully deployed.
 
-Your release is named {{ .Release.Name }}.
+Accessing the Application
+-------------------------
+1. Pod Name:
+   The pod created by this chart will be named: {{ .Release.Name }}-static-site-pod
+2. Namespace:
+   The pod is deployed in the {{ .Release.Namespace }} namespace.
+3. Port:
+   The application is exposed on port {{ .Values.pod.port }}.
 
-To learn more about the release, try:
-  $ helm status {{ .Release.Name }} --namespace {{ .Release.Namespace }}
-  $ helm get all {{ .Release.Name }} --namespace {{ .Release.Namespace }}
+Verifying the Deployment
+------------------------
+- To verify that the pod is running, use the following command:
 
-To list all the releases in all the namespaces, use:
+  kubectl get pods -n {{ .Release.Namespace }}
 
-  $ helm ls --all-namespaces -a
+- You should see a pod with the name {{ .Release.Name }}-static-site-pod in the Running state.
+
+Accessing the Application
+------------------------------------
+- Since the application is running inside a Kubernetes cluster, you can access it internally using the following command:
+
+  kubectl port-forward -n {{ .Release.Namespace }} pod/{{ .Release.Name }}-static-site-pod {{ .Values.pod.port }}:{{ .Values.pod.port }}
+
+- Then open your browser and go to http://localhost:{{ .Values.pod.port }}.
+
+Uninstalling the Chart
+----------------------
+- To uninstall/delete the {{ .Release.Name }} deployment, use the following command:
+
+  helm uninstall {{ .Release.Name }} -n {{ .Release.Namespace }}
+
+- This will remove all the Kubernetes components associated with the chart and delete the release.
+
+
+Troubleshooting
+---------------
+- If the pod is not in the Running state, check the pod events:
+
+  kubectl describe pod -n {{ .Release.Namespace }} {{ .Release.Name }}-static-site-pod
+
+- Ensure that the DockerHub credentials are correctly set and that the image is available.
+
