@@ -3,7 +3,7 @@ pod:
     name: marlapativ/static-site
     tag: jenkins-static-site-1
   imagePullPolicy: IfNotPresent
-  port: 9090
+  port: 8080
 
 secrets:
   dockerhub: ''
