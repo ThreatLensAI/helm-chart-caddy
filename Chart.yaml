@@ -2,6 +2,7 @@ apiVersion: v2
 name: helm-chart-caddy
 description: CSYE7125 Helm charts for static-site
 
+
 type: application
 
 version: 0.1.0
