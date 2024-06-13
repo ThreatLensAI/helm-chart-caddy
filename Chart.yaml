@@ -4,7 +4,7 @@ description: CSYE7125 Helm charts for static-site
 
 type: application
 
-version: 0.1.0
+version: 1.0.0
 appVersion: '1.16.0'
 
 home: https://github.com/csye7125-su24-team06/helm-chart-caddy
