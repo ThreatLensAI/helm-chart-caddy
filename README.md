@@ -82,3 +82,5 @@ The following table lists the configurable parameters of the Helm chart and thei
 | `pod.startupProbe.path`               | Path for the startup probe                | `/`                      |
 | `pod.startupProbe.failureThreshold`   | Failure threshold for the startup probe   | `30`                     |
 | `pod.startupProbe.periodSeconds`      | Period in seconds for the startup probe   | `10`                     |
+
+
