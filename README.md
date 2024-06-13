@@ -84,3 +84,5 @@ The following table lists the configurable parameters of the Helm chart and thei
 | `pod.startupProbe.periodSeconds`      | Period in seconds for the startup probe   | `10`                     |
 
 
+
+
