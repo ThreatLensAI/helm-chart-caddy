@@ -2,23 +2,6 @@
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
-        [
-            "semantic-release-helm3",
-            {
-                "chartPath": "./",
-                "onlyUpdateVersion": true
-            }
-        ],
-        [
-            "@semantic-release/git",
-            {
-                "assets": [
-                    {
-                        "path": "./Chart.yaml"
-                    }
-                ]
-            }
-        ],
         "@semantic-release/github"
     ]
 }
