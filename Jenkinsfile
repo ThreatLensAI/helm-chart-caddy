@@ -28,6 +28,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'github-app', passwordVariable: 'GITHUB_TOKEN', usernameVariable: 'GITHUB_USERNAME')]) {
                         sh '''
+                            npm i -g @semantic-release/exec
                             export GITHUB_ACTION=true
                             npx semantic-release
                         '''
