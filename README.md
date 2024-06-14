@@ -1,6 +1,6 @@
 # CSYE7125 Helm Chart to deploy static-site using Caddy
 
-This repository contains Helm chart designed to deploy a static site using the Caddy web server. It includes configurations for creating a ConfigMap, a Pod, and a Secret to manage sensitive information.
+This repository contains Helm chart designed to deploy a static site hosted using the Caddy web server. It includes configurations for creating a ConfigMap, a Pod, and a Secret to manage sensitive information.
 
 ## Helm Installation
 
