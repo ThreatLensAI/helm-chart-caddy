@@ -1,4 +1,4 @@
-# CSYE7125 Helm Chart to deploy static-site using Caddy
+# Helm Chart to deploy static-site using Caddy
 
 This repository contains Helm chart designed to deploy a static site hosted using the Caddy web server. It includes configurations for creating a ConfigMap, a Pod, and a Secret to manage sensitive information.
 
@@ -22,11 +22,11 @@ To install the chart with default variables set in `values.yaml`, helm install r
 
 This can be provided in following two ways:
 
-1. To install the chart with the release name `static-site` in custom namespace `csye7125` the following command can be used:
+1. To install the chart with the release name `static-site` in custom namespace `caddy` the following command can be used:
 
     ```bash
     export DOCKERHUBCREDENTIALS=$(cat ~/.docker/config.json | base64 -w 0)
-    helm install static-site . --set secrets.dockerhub=${DOCKERHUBCREDENTIALS} --create-namespace --namespace csye7125
+    helm install static-site . --set secrets.dockerhub=${DOCKERHUBCREDENTIALS} --create-namespace --namespace caddy
     ```
 
 2. Update the `values.yaml` file variable:
@@ -55,7 +55,7 @@ helm uninstall static-site
 In case the chart was installed in a custom namespace, use the following command:
 
 ```bash
-helm uninstall static-site -n csye7125
+helm uninstall static-site -n caddy
 ```
 
 ## Configuration
